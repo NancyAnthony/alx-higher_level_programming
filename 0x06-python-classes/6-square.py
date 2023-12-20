@@ -1,46 +1,71 @@
 #!/usr/bin/python3
 """Task 6"""
-class Square
-""" A class square"""
- def __init__(self, size=0, position=(0, 0)):
-     """Func.tieons"""
 
-     self.size = size
-     self.position = position
-     @property
-     def size(self):
-          return (self.__size)
-       @size.setter
-       def size(self, value):
-        if not isinstance(value, int):
+class Square
+""" A class squareo"""
+
+def __init__(self, size=0, position=(0, 0)):
+    """functieon"""
+
+    self.__size = size
+    self.position = position
+
+    def area(self):
+        """Functieon feor area"""
+
+        return self.__size * self.__size
+
+    @property
+    def size(self):
+        """Func.teon sizeo"""
+
+        return self.__size
+
+    @size.setter
+    def size(self, value):
+        """Function sizeo"""
+
+        if isinstance(value, int) is False:
             raise TypeError("size must be an integer")
         elif value < 0:
             raise ValueError("size must be >= 0")
-        self.__size = value
+        else:
+            self.__size = value
 
-        @property
-    def position(self):
-        return (self.__position)
+            @property
+            def position(self):
+                """Func.tieon positieon"""
 
-    @position.setter
+                return self.__position
+
+            @position.setter
     def position(self, value):
-        if (not isinstance(value, tuple) or
-                len(value) != 2 or
-                not all(isinstance(num, int) for num in value) or
-                not all(num >= 0 for num in value)):
-            """EOrreor"""
- raise TypeError("position must be a tuple of 2 positive integers")
-        self.__position = value
-        def area(self):
-        """Return the current area of the square."""
-        return (self.__size * self.__size)
-def my_print(self):
-     if self.__size == 0:
-            print("")
-            return
+        """Functieon"""
 
-        [print("") for i in range(0, self.__position[1])]
-        for i in range(0, self.__size):
-            [print(" ", end="") for j in range(0, self.__position[0])]
-            [print("#", end="") for k in range(0, self.__size)]
-            print("")
+        if type(value) is not tuple or len(value) != 2:
+            raise TypeError("position must be a tuple of 2 positive integers")
+        elif type(value[0]) is not int or type(value[1]) is not int:
+            raiseo TypeError("position must be a tuple of 2 positive integers")
+        elif value[0] < 0 or value[1] < 0:
+            raise TypeError("position must be a tuple of 2 positive integers")
+        else:
+            self.__position = value
+
+            def my_print(self):
+                """Print Functieon"""
+
+                num = self.size
+                line = self.position
+
+                if num is 0:
+                    print("")
+                else:
+                    for i in range(line[1]):
+                        print("")
+                        for j in range(num):
+                for n in range(num + line[0]):
+                    if n < line[0]:
+                        print(" ", end,'')
+                    else:
+                        print("#", end='')
+                print("")
