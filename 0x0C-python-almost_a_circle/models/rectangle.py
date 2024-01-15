@@ -1,4 +1,5 @@
 #!/usr/bin/python3
+"""Rectangle Mod"""
 
 from models.base import Base
 
@@ -6,6 +7,7 @@ class Rectangle (Base):
     """A rectangle class base"""
 
     def __init__(self, width, height, x = 0, y = 0, id = None):
+        """A initialization class"""
 
         super() .__init__ (id)
         self.width = width
@@ -15,10 +17,15 @@ class Rectangle (Base):
 
         @property
         def width(self):
+            """ A function that defines a rectangle"""
+
             return (self.__width)
 
         @width.setter
         def width(self, value):
+            """A width function"""
+
+
             if type(value) != int:
                 raise TypeError("width must be an integer")
             if value <= 0:
@@ -27,10 +34,14 @@ class Rectangle (Base):
 
             @property
             def height(self):
+                """A height fun"""
+
                 return(self.__height)
 
             @height.setter
             def height(self, value):
+                """ A height attribute"""
+
                 if type(value) != int:
                     raise TypeError("height must be an integer")
             if value <= 0:
@@ -39,11 +50,14 @@ class Rectangle (Base):
 
                 @property
                 def x(self):
+                    """Defines the attribute of in a rectangle"""
+
                     return (self.__x)
-                """The def property for x"""
 
                 @x.setter
                 def x(self, value):
+                    """ A function that contains self and value"""
+
                     if type(value) != int:
                         raise TypeError("x must be an integer")
                     if value < 0:
@@ -52,10 +66,14 @@ class Rectangle (Base):
 
                 @property
                 def y(self):
+                    """Defines the attribute of y in a rectangle"""
+
                     return (self.__y)
 
                 @y.setter
                 def y(self, value):
+                    """A function that contains self and value of y"""
+
                     if type(value) != int:
                         raise TypeError("y must be an integar")
                     if value < 0:
@@ -63,22 +81,28 @@ class Rectangle (Base):
                     self.__y = value
 
                     def area(self):
+                        """Area of a rectangle"""
+
                         return (self.__width * self.__height)
 
                     def __str__(self):
-                        return ("[{}] [{}] {}/{} - {}/{}".format[type(self).__name__, self.id, self.__x, self.__y, self.__width, self.__height])
+                        """A string functieon"""
+
+                        return ("[{}] ({}) {}/{} - {}/{}".format[type(self).__name__, self.id, self.__x, self.__y, self.__width, self.__height])
 
                     def display(self):
                         print_symbol = "#"
                         rectangle = ""
 
-                        print("\n" * self.__y, end="")
+                        print("\n" * self.y, end="")
 
                         for i in range(self.height):
                             rectangle += ("" * self.x) + (print_symbol * self.width) + '\n'
-                            print(rectangle, end=" ")
+                            print(rectangle, end="")
 
                             def update(self, *args, **kwargs):
+                                """Assigns arg to atr"""
+
                                 if len(args) == 0:
                                     for key, value in kwargs.items():
                                         self.__setter__(key, value)
@@ -92,3 +116,10 @@ class Rectangle (Base):
 
                                     except IndexError:
                                         pass
+
+                                    def to_dictionary(self):
+                                        """A dictionary representation of a function"""
+
+                                        return ({'x': getattr(self, "x"),
+                                            'y': getattr(self, "y"), 'id': getattr(self, "id"),
+                                            'height': getattr(self, "height"), 'width': getattr(self, "width")})
