@@ -1,18 +1,25 @@
 #!/usr/bin/python3
+"""Defines unittests for base.py.
 
-# 0. If it's not tested it doesn't work
-# Run: python3 -m unittest discover tests
-
+Unittest classes:
+    TestBase_instantiation - line 23
+    TestBase_to_json_string - line 110
+    TestBase_save_to_file - line 156
+    TestBase_from_json_string - line 234
+    TestBase_create - line 288
+    TestBase_load_from_file - line 340
+    TestBase_save_to_file_csv - line 406
+    TestBase_load_from_file_csv - line 484
+"""
 import os
 import unittest
 from models.base import Base
-from models.square import Square
 from models.rectangle import Rectangle
+from models.square import Square
 
 
-# Class #0
-class ModelInstances(unittest.TestCase):
-    """A class to test instances of Base arguments"""
+class TestBase_instantiation(unittest.TestCase):
+    """Unittests for testing instantiation of the Base class."""
 
     def test_no_arg(self):
         b1 = Base()
@@ -98,9 +105,8 @@ class ModelInstances(unittest.TestCase):
             Base(1, 2)
 
 
-# Class #1
-class ModelToJSON(unittest.TestCase):
-    """A class that tests modules from other types to JSON strings"""
+class TestBase_to_json_string(unittest.TestCase):
+    """Unittests for testing to_json_string method of Base class."""
 
     def test_to_json_string_rectangle_type(self):
         r = Rectangle(10, 7, 2, 8, 6)
@@ -145,9 +151,8 @@ class ModelToJSON(unittest.TestCase):
             Base.to_json_string([], 1)
 
 
-# Class #2
-class SaveModelToFile(unittest.TestCase):
-    """A class to save Base models to a file"""
+class TestBase_save_to_file(unittest.TestCase):
+    """Unittests for testing save_to_file method of Base class."""
 
     @classmethod
     def tearDown(self):
@@ -224,9 +229,8 @@ class SaveModelToFile(unittest.TestCase):
             Square.save_to_file([], 1)
 
 
-# Class #3
-class ModelFromJSON(unittest.TestCase):
-    """A class that tests modules from JSON strings to other types"""
+class TestBase_from_json_string(unittest.TestCase):
+    """Unittests for testing from_json_string method of Base class."""
 
     def test_from_json_string_type(self):
         list_input = [{"id": 89, "width": 10, "height": 4}]
@@ -279,9 +283,8 @@ class ModelFromJSON(unittest.TestCase):
             Base.from_json_string([], 1)
 
 
-# Class #4
-class CreateModel(unittest.TestCase):
-    """A class that defines creation of base models"""
+class TestBase_create(unittest.TestCase):
+    """Unittests for testing create method of Base class."""
 
     def test_create_rectangle_original(self):
         r1 = Rectangle(3, 5, 1, 2, 7)
@@ -311,13 +314,13 @@ class CreateModel(unittest.TestCase):
         s1 = Square(3, 5, 1, 7)
         s1_dictionary = s1.to_dictionary()
         s2 = Square.create(**s1_dictionary)
-        self.assertEqual("[Square] (7) 5/1 - 3/3", str(s1))
+        self.assertEqual("[Square] (7) 5/1 - 3", str(s1))
 
     def test_create_square_new(self):
         s1 = Square(3, 5, 1, 7)
         s1_dictionary = s1.to_dictionary()
         s2 = Square.create(**s1_dictionary)
-        self.assertEqual("[Square] (7) 5/1 - 3/3", str(s2))
+        self.assertEqual("[Square] (7) 5/1 - 3", str(s2))
 
     def test_create_square_is(self):
         s1 = Square(3, 5, 1, 7)
@@ -332,9 +335,8 @@ class CreateModel(unittest.TestCase):
         self.assertNotEqual(s1, s2)
 
 
-# Class #5
-class LoadFromFile(unittest.TestCase):
-    """A class that loads methods of Base models from a file"""
+class TestBase_load_from_file(unittest.TestCase):
+    """Unittests for testing load_from_file_method of Base class."""
 
     @classmethod
     def tearDown(self):
@@ -399,9 +401,8 @@ class LoadFromFile(unittest.TestCase):
             Base.load_from_file([], 1)
 
 
-# Class #6
-class SaveModelToFile_csv(unittest.TestCase):
-    """A class that saves Base models to CSV files"""
+class TestBase_save_to_file_csv(unittest.TestCase):
+    """Unittests for testing save_to_file_csv method of Base class."""
 
     @classmethod
     def tearDown(self):
@@ -478,9 +479,8 @@ class SaveModelToFile_csv(unittest.TestCase):
             Square.save_to_file_csv([], 1)
 
 
-# Class #7
-class LoadFromFile_csv(unittest.TestCase):
-    """A class that loads methods of Base models from a CSV file"""
+class TestBase_load_from_file_csv(unittest.TestCase):
+    """Unittests for testing load_from_file_csv method of Base class."""
 
     @classmethod
     def tearDown(self):
@@ -543,7 +543,6 @@ class LoadFromFile_csv(unittest.TestCase):
     def test_load_from_file_csv_more_than_one_arg(self):
         with self.assertRaises(TypeError):
             Base.load_from_file_csv([], 1)
-
 
 if __name__ == "__main__":
     unittest.main()
